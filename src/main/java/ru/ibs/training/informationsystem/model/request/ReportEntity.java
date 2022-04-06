@@ -1,8 +1,9 @@
-package ru.ibs.training.informationsystem.model;
+package ru.ibs.training.informationsystem.model.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.ibs.training.informationsystem.model.request.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

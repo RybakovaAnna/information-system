@@ -1,9 +1,8 @@
-package ru.ibs.training.informationsystem.model;
+package ru.ibs.training.informationsystem.model.request;
 
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity

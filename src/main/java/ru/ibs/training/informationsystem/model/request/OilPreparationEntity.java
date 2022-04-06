@@ -1,4 +1,4 @@
-package ru.ibs.training.informationsystem.model;
+package ru.ibs.training.informationsystem.model.request;
 
 import lombok.*;
 

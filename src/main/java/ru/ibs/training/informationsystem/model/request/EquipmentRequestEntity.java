@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:src/main/java/ru/ibs/training/informationsystem/model/request/EquipmentRequestEntity.java
 package ru.ibs.training.informationsystem.model.request;
 
 import lombok.AllArgsConstructor;
@@ -67,3 +68,5 @@ public class EquipmentRequestEntity {
     @Column(name = "justification", nullable = false)
     private String comment;
 }
+========
+>>>>>>>> 55199b5 (fix):src/main/java/ru/ibs/training/informationsystem/model/request/ApplicationForEquipmentEntity.java

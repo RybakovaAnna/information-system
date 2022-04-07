@@ -3,7 +3,6 @@ package ru.ibs.training.informationsystem.model.report;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.ibs.training.informationsystem.model.request.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

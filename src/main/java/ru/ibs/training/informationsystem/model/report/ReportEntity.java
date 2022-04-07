@@ -17,7 +17,6 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = "oilProduction")
 @Table(name = "report")
 public class ReportEntity {
 
@@ -62,7 +61,7 @@ public class ReportEntity {
      * Раздел 1.
      * Добыча нефти, тонн
      */
-    @OneToMany(mappedBy = "reportId")
+    @OneToMany(mappedBy = "reportId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<OilProductionEntity> oilProduction;
 
     /**

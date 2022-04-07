@@ -1,4 +1,4 @@
-package ru.ibs.training.informationsystem.model.request;
+package ru.ibs.training.informationsystem.model.report;
 
 import lombok.*;
 
@@ -10,12 +10,12 @@ import javax.validation.constraints.NotNull;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "oil_movement")
-public class OilMovementEntity {
+@Table(name = "well_fund")
+public class WellFundEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "oil_movement_id_seq")
-    @SequenceGenerator(sequenceName = "oil_movement_id_seq", name = "oil_movement_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "well_fund_id_seq")
+    @SequenceGenerator(sequenceName = "well_fund_id_seq", name = "well_fund_id_seq")
     private Long id;
 
     @NotBlank
@@ -23,8 +23,8 @@ public class OilMovementEntity {
     private String name;
 
     @NotNull
-    @Column(name = "number", nullable = false)
-    private Double number;
+    @Column(name = "number_of_wells", nullable = false)
+    private Integer numberOfWells;
 
     @ManyToOne
     @JoinColumn(name="report_id", referencedColumnName = "id")

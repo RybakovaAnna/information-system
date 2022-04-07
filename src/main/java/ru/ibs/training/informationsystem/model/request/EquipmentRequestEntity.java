@@ -1,4 +1,4 @@
-package ru.ibs.training.informationsystem.model.report;
+package ru.ibs.training.informationsystem.model.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "application_for_equipment")
-public class ApplicationForEquipmentEntity {
+public class EquipmentRequestEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "application_for_equipment_id_seq")

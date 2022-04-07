@@ -2,7 +2,7 @@ package ru.ibs.training.informationsystem.repositories.request;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.ibs.training.informationsystem.model.request.FundCalendarTimeEntity;
+import ru.ibs.training.informationsystem.model.report.FundCalendarTimeEntity;
 
 @Repository
 public interface FundCalendarTimeRepository extends JpaRepository<FundCalendarTimeEntity, Long> {

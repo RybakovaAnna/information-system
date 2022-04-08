@@ -1,19 +1,23 @@
-package ru.ibs.training.informationsystem.model.request;
+package ru.ibs.training.informationsystem.model.report;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.ibs.training.informationsystem.model.request.*;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.Set;
 
+/**
+ * Oтчёт (1-ТЭК)
+ */
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = "oilProduction")
 @Table(name = "report")
 public class ReportEntity {
 
@@ -22,25 +26,43 @@ public class ReportEntity {
     @SequenceGenerator(sequenceName = "report_id_seq", name = "report_id_seq")
     private Long id;
 
+    /**
+     * Дата "О внесении изменений"
+     */
+    @Column(name = "form_date")
+    private LocalDate formDate;
+
+    /**
+     * Номер формы
+     */
+    @Column(name = "form_number")
+    private Long formNumber;
+
+    /**
+     * Наименования отчитывающейся организации
+     */
     @NotBlank
     @Column(name = "name_company", nullable = false)
     private String nameCompany;
 
+    /**
+     * Почтовый адрес
+     */
     @NotBlank
     @Column(name = "mailing_address")
     private String mailingAddress;
 
     /**
-     * Код
+     * Код ОКПО
      */
-    @OneToOne(mappedBy = "reportId", cascade = CascadeType.ALL)
-    private CodeEntity code;
+    @Column(name = "okpo_num")
+    private String okpoNum;
 
     /**
      * Раздел 1.
      * Добыча нефти, тонн
      */
-    @OneToMany(mappedBy = "reportId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "reportId")
     private Set<OilProductionEntity> oilProduction;
 
     /**
@@ -69,8 +91,8 @@ public class ReportEntity {
      * Раздел 5.
      * Фонд скважин на конец отчетного периода, единиц
      */
-    @OneToMany(mappedBy = "reportId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<WellFundEntity> wellFund;
+    @OneToOne(mappedBy = "reportId", cascade = CascadeType.ALL)
+    private WellFundEntity wellFund;
 
     /**
      * Раздел 6.
@@ -83,15 +105,15 @@ public class ReportEntity {
      * Раздел 7.
      * Движение нфти (включая газовый конденсат) с начала года, тонн
      */
-    @OneToMany(mappedBy = "reportId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<OilMovementEntity> oilMovement;
+    @OneToOne(mappedBy = "reportId", cascade = CascadeType.ALL)
+    private OilMovementEntity oilMovement;
 
     /**
      * Раздел 8.
      * Подготовка нефти (включая газовый конденсат), тонн
      */
-    @OneToMany(mappedBy = "reportId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<OilPreparationEntity> oilPreparation;
+    @OneToOne(mappedBy = "reportId", cascade = CascadeType.ALL)
+    private OilPreparationEntity oilPreparation;
 
     /**
      * Должностное лицо, ответственное за предоставление данных
@@ -99,6 +121,9 @@ public class ReportEntity {
     @OneToOne(mappedBy = "reportId", cascade = CascadeType.ALL)
     private ExecutiveEntity executive;
 
+    /**
+     * Дата составления документа
+     */
     @Column(name = "date")
     private LocalDate date;
 }

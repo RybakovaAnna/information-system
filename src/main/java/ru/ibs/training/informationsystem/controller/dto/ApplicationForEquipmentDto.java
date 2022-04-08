@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toMap;
 
-@ApiModel(value="EquipmentRequest", discriminator = "equipmentRequest")
+@ApiModel(value = "EquipmentRequest", discriminator = "equipmentRequest")
 @Schema(name = "EquipmentRequest")
 public class ApplicationForEquipmentDto {
     @JsonProperty

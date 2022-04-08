@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -788,8 +786,8 @@ public class ReportDto {
     private Double inOilPipelines;
 
     /**
-     Раздел 8.
-     Подготовка нефти (включая газовый конденсат), тонн
+     * Раздел 8.
+     * Подготовка нефти (включая газовый конденсат), тонн
      */
     @JsonProperty("field182_1")
     @NotNull
@@ -808,26 +806,26 @@ public class ReportDto {
     private Double oilLosses;
 
     /**
-     Должность
+     * Должность
      */
     private String position;
 
     /**
-     Ф.И.О
+     * Ф.И.О
      */
     private String fullName;
 
     /**
-     Номер контактного телефона
+     * Номер контактного телефона
      */
-    private Integer telephone ;
+    private Integer telephone;
 
     /**
-     E-mail
+     * E-mail
      */
     private String email;
     /**
-      * Дата составления документа
-      */
+     * Дата составления документа
+     */
     private LocalDate date;
 }

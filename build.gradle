@@ -23,6 +23,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 //    implementation 'org.liquibase:liquibase-core:4.9.0'
     implementation 'org.hibernate.validator:hibernate-validator:7.0.4.Final'
+    implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+    implementation 'org.mapstruct:mapstruct-processor:1.4.2.Final'
     annotationProcessor 'org.projectlombok:lombok'
     implementation 'io.springfox:springfox-boot-starter:3.0.0'
     implementation 'io.springfox:springfox-swagger-ui:3.0.0'

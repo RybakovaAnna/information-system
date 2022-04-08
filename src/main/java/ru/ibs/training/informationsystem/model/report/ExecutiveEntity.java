@@ -1,11 +1,16 @@
-package ru.ibs.training.informationsystem.model.request;
+package ru.ibs.training.informationsystem.model.report;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+/**
+ * Должностное лицо, ответственное за предоставление данных
+ */
 @Entity
 @Data
 @AllArgsConstructor
@@ -18,18 +23,30 @@ public class ExecutiveEntity {
     @SequenceGenerator(sequenceName = "executive_id_seq", name = "executive_id_seq")
     private Long id;
 
+    /**
+     * Должность
+     */
     @NotBlank
     @Column(name = "position", nullable = false, length = 50)
     private String position;
 
+    /**
+     * Ф.И.О
+     */
     @NotBlank
     @Column(name = "full_name", nullable = false, length = 50)
     private String fullName;
 
+    /**
+     * Номер контактного телефона
+     */
     @NotNull
     @Column(name = "telephone", nullable = false)
-    private Integer telephone ;
+    private Integer telephone;
 
+    /**
+     * E-mail
+     */
     @NotBlank
     @Column(name = "email", nullable = false, length = 50)
     private String email;

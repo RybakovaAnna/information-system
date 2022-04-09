@@ -26,7 +26,7 @@ public class OilMovementEntity {
     @Column(name = "number", nullable = false)
     private Double number;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="report_id", referencedColumnName = "id")
     private ReportEntity reportId;
 }

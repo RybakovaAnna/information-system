@@ -26,7 +26,7 @@ public class WellFundEntity {
     @Column(name = "number_of_wells", nullable = false)
     private Integer numberOfWells;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="report_id", referencedColumnName = "id")
     private ReportEntity reportId;
 }

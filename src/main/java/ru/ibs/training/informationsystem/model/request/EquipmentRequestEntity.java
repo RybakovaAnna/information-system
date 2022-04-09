@@ -18,7 +18,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "application_for_equipment")
-public class ApplicationForEquipmentEntity {
+public class EquipmentRequestEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "application_for_equipment_id_seq")

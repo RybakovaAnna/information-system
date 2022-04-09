@@ -1,4 +1,4 @@
-package ru.ibs.training.informationsystem.controller.dto;
+package ru.ibs.training.informationsystem.controllers.api.v1.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

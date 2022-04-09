@@ -1,4 +1,4 @@
-package ru.ibs.training.informationsystem.controller.dto;
+package ru.ibs.training.informationsystem.controllers.api.v1.dtos;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -17,7 +17,7 @@ import static java.util.stream.Collectors.toMap;
 
 @ApiModel(value = "EquipmentRequest", discriminator = "equipmentRequest")
 @Schema(name = "EquipmentRequest")
-public class ApplicationForEquipmentDto {
+public class EquipmentRequestDto {
     @JsonProperty
     @ApiModelProperty(
             name = "Идентификатор",

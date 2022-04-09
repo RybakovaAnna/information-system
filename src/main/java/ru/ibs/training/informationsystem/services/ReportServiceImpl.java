@@ -14,12 +14,15 @@ import java.util.Collection;
 public class ReportServiceImpl implements ReportService {
 
     private ReportRepository repository;
-    private Mapper mapper;
+    /*
+    TODO: Узнать, почему не инжектится маппер
+     */
+//    private Mapper mapper;
 
     @Autowired
-    public ReportServiceImpl(ReportRepository repository, Mapper mapper) {
+    public ReportServiceImpl(ReportRepository repository ) {
         this.repository = repository;
-        this.mapper = mapper;
+//        this.mapper = mapper;
     }
 
     @Override
@@ -34,15 +37,15 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public void createReport(ReportDto reportDto){
-        repository.save(
-                mapper.toEntity(reportDto)
-        );
+//        repository.save(
+//                mapper.toEntity(reportDto)
+//        );
     }
 
     @Override
     public void updateReport(Long id, ReportDto reportDto){
-        repository.save(
-                mapper.toEntity(reportDto)
-        );
+//        repository.save(
+//                mapper.toEntity(reportDto)
+//        );
     }
 }

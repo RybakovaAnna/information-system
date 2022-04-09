@@ -41,7 +41,7 @@ public class ReportController {
             value = "/{id}",
             produces = APPLICATION_JSON_VALUE
     )
-    public EquipmentRequestDto getOneReport(
+    public ReportDto getOneReport(
             @PathVariable Long id) {
         return new ReportDto();
     }

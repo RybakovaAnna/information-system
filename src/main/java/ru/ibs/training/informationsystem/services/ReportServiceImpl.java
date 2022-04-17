@@ -8,7 +8,8 @@ import ru.ibs.training.informationsystem.repositories.report.ReportRepository;
 import ru.ibs.training.informationsystem.services.interfaces.Mapper;
 import ru.ibs.training.informationsystem.services.interfaces.ReportService;
 
-import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service("reportService")
 public class ReportServiceImpl implements ReportService {
@@ -23,13 +24,17 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public Collection<ReportEntity> getAllReports(){
-        return repository.findAll();
+    public List<ReportDto> getAllReports(){
+        List<ReportEntity> entityList = repository.findAll();
+        return entityList
+                .stream()
+                .map(e -> mapper.toDto(e))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public ReportEntity getReport(Long id){
-        return repository.getById(id);
+    public ReportDto getReport(Long id){
+        return mapper.toDto(repository.getById(id));
     }
 
     @Override
@@ -41,8 +46,8 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public void updateReport(Long id, ReportDto reportDto){
-        repository.save(
-                mapper.toEntity(reportDto)
-        );
+        ReportEntity reportEntity = mapper.toEntity(reportDto);
+        reportEntity.setId(id);
+        repository.save(reportEntity);
     }
 }

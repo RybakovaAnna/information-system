@@ -10,6 +10,7 @@ import ru.ibs.training.informationsystem.controllers.api.v1.dtos.EquipmentReques
 import ru.ibs.training.informationsystem.services.interfaces.RequestService;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -50,7 +51,7 @@ public class RequestController {
             produces = APPLICATION_JSON_VALUE
     )
     public EquipmentRequestDto getOneRequest(
-            @PathVariable Long id) {
+            @PathVariable UUID id) {
         return service.findById(id);
     }
 
@@ -66,7 +67,7 @@ public class RequestController {
             consumes = APPLICATION_JSON_VALUE
     )
     public void update(
-            @PathVariable Long id,
+            @PathVariable UUID id,
             @RequestBody EquipmentRequestDto dto) {
         service.updateById(id, dto);
     }
@@ -82,7 +83,7 @@ public class RequestController {
             value = "/{id}"
     )
     public void delete(
-            @PathVariable Long id) {
+            @PathVariable UUID id) {
         service.deleteById(id);
     }
 
@@ -115,7 +116,7 @@ public class RequestController {
             consumes = APPLICATION_JSON_VALUE
     )
     public void approve(
-            @PathVariable Long id) {
+            @PathVariable UUID id) {
         service.approveRequest(id);
     }
 
@@ -128,7 +129,7 @@ public class RequestController {
             })
     @PostMapping("/{id}/reject")
     public void reject(
-            @PathVariable Long id) {
+            @PathVariable UUID id) {
         service.rejectRequest(id);
     }
 

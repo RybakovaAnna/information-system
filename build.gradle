@@ -24,11 +24,11 @@ dependencies {
     implementation 'org.liquibase:liquibase-core:4.9.0'
     implementation 'org.hibernate.validator:hibernate-validator:7.0.4.Final'
     implementation 'org.mapstruct:mapstruct:1.4.2.Final'
-    implementation 'org.mapstruct:mapstruct-processor:1.4.2.Final'
-    annotationProcessor 'org.projectlombok:lombok'
     implementation 'io.springfox:springfox-boot-starter:3.0.0'
     implementation 'io.springfox:springfox-swagger-ui:3.0.0'
     compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
     runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

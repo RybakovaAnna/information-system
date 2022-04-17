@@ -1,6 +1,7 @@
 package ru.ibs.training.informationsystem.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.ibs.training.informationsystem.controllers.api.v1.dtos.EquipmentRequestDto;
 import ru.ibs.training.informationsystem.model.enums.Status;
 import ru.ibs.training.informationsystem.model.request.EquipmentRequestEntity;
@@ -9,9 +10,10 @@ import ru.ibs.training.informationsystem.services.interfaces.Mapper;
 import ru.ibs.training.informationsystem.services.interfaces.RequestService;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
-
+@Service("RequestService")
 public class RequestServiceImpl implements RequestService {
 
     private EquipmentRequestRepository requestRepository;
@@ -34,17 +36,22 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    public EquipmentRequestDto findById(Long id) {
-        return mapper.toDto(requestRepository.findById(id).orElse(null));
+    public EquipmentRequestDto findById(UUID id) {
+        return mapper.toDto(requestRepository.findById(
+                Long.parseLong(id.toString())
+        )
+                .orElse(null));
     }
 
     @Override
-    public void deleteById(Long id) {
-        requestRepository.deleteById(id);
+    public void deleteById(UUID id) {
+        requestRepository.deleteById(
+                Long.parseLong(id.toString())
+        );
     }
 
     @Override
-    public void updateById(Long id, EquipmentRequestDto requestDto) {
+    public void updateById(UUID id, EquipmentRequestDto requestDto) {
         EquipmentRequestEntity requestEntity = mapper.toEntity(requestDto);
         requestEntity.setId(id);
         requestRepository.save(requestEntity);
@@ -57,14 +64,18 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    public void approveRequest(Long id) {
-        EquipmentRequestEntity requestEntity = requestRepository.getById(id);
+    public void approveRequest(UUID id) {
+        EquipmentRequestEntity requestEntity = requestRepository.getById(
+                Long.parseLong(id.toString())
+        );
         requestEntity.setStatus(Status.APPROVED.toString());
     }
 
     @Override
-    public void rejectRequest(Long id) {
-        EquipmentRequestEntity requestEntity = requestRepository.getById(id);
+    public void rejectRequest(UUID id) {
+        EquipmentRequestEntity requestEntity = requestRepository.getById(
+                Long.parseLong(id.toString())
+        );
         requestEntity.setStatus(Status.REJECTED.toString());
     }
 }

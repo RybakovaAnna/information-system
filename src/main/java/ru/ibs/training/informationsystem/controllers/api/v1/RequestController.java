@@ -4,10 +4,11 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.training.informationsystem.controllers.api.v1.dtos.EquipmentRequestDto;
+import ru.ibs.training.informationsystem.services.interfaces.RequestService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -15,6 +16,14 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping("/api/v1/equipment-request")
 public class RequestController {
+
+    private RequestService service;
+
+    @Autowired
+    public RequestController(RequestService service) {
+        this.service = service;
+    }
+
     @ApiOperation("Получение всех заявок на оборудование")
     @ApiResponses(
             value = {
@@ -26,7 +35,7 @@ public class RequestController {
             produces = APPLICATION_JSON_VALUE
     )
     public List<EquipmentRequestDto> allRequests() {
-        return new ArrayList<>();
+        return service.findAll();
     }
 
     @ApiOperation("Получение заявки по id")
@@ -42,7 +51,7 @@ public class RequestController {
     )
     public EquipmentRequestDto getOneRequest(
             @PathVariable Long id) {
-        return new EquipmentRequestDto();
+        return service.findById(id);
     }
 
     @ApiOperation("Редактирование заявки")
@@ -57,8 +66,9 @@ public class RequestController {
             consumes = APPLICATION_JSON_VALUE
     )
     public void update(
-            @PathVariable Long id) {
-
+            @PathVariable Long id,
+            @RequestBody EquipmentRequestDto dto) {
+        service.updateById(id, dto);
     }
 
     @ApiOperation("Удаление заявки")
@@ -73,7 +83,7 @@ public class RequestController {
     )
     public void delete(
             @PathVariable Long id) {
-
+        service.deleteById(id);
     }
 
     @ApiOperation("Заявка на получение оборудования")
@@ -90,6 +100,7 @@ public class RequestController {
             @RequestBody
             @ApiParam(value = "EquipmentRequest", required = true)
                     EquipmentRequestDto equipmentRequestDto) {
+        service.createNewRequest(equipmentRequestDto);
     }
 
     @ApiOperation("Удовлетворение заявки")
@@ -105,7 +116,7 @@ public class RequestController {
     )
     public void approve(
             @PathVariable Long id) {
-
+        service.approveRequest(id);
     }
 
     @ApiOperation("Отказ по заявке")
@@ -118,7 +129,7 @@ public class RequestController {
     @PostMapping("/{id}/reject")
     public void reject(
             @PathVariable Long id) {
-
+        service.rejectRequest(id);
     }
 
 }

@@ -26,7 +26,7 @@ public class OilPreparationEntity {
     @Column(name = "actually", nullable = false)
     private Double actually;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="report_id", referencedColumnName = "id")
     private ReportEntity reportId;
 }

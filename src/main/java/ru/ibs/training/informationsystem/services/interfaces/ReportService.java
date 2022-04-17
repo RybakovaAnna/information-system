@@ -1,14 +1,15 @@
 package ru.ibs.training.informationsystem.services.interfaces;
 
 import ru.ibs.training.informationsystem.controllers.api.v1.dtos.ReportDto;
-import ru.ibs.training.informationsystem.model.report.ReportEntity;
 
 import java.util.Collection;
+import java.util.List;
 
 public interface ReportService {
-    Collection<ReportEntity> getAllReports();
 
-    ReportEntity getReport(Long id);
+    List<ReportDto> getAllReports();
+
+    ReportDto getReport(Long id);
 
     void createReport(ReportDto reportDto);
 

@@ -26,31 +26,31 @@ public class FundCalendarTimeEntity {
 
     @NotNull
     @Column(name = "operating_fund", nullable = false)
-    private Double operatingFund;
+    private Integer operatingFund;
 
     @NotNull
     @Column(name = "active_fund", nullable = false)
-    private Double activeFund;
+    private Integer activeFund;
 
     @NotNull
     @Column(name = "operating_time", nullable = false)
-    private Double operatingTime;
+    private Integer operatingTime;
 
     @NotNull
     @Column(name = "downtime", nullable = false)
-    private Double downtime;
+    private Integer downtime;
 
     @NotNull
     @Column(name = "without_production", nullable = false)
-    private Double withoutProduction;
+    private Integer withoutProduction;
 
     @NotNull
     @Column(name = "not_active", nullable = false)
-    private Double notActive;
+    private Integer notActive;
 
     @NotNull
     @Column(name = "pending", nullable = false)
-    private Double pending;
+    private Integer pending;
 
     @ManyToOne
     @JoinColumn(name = "report_id", referencedColumnName = "id")

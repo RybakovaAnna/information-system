@@ -3,6 +3,7 @@ package ru.ibs.training.informationsystem.model.report;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -60,8 +61,8 @@ public class ReportEntity {
      * Раздел 1.
      * Добыча нефти, тонн
      */
-    @OneToMany(mappedBy = "reportId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<OilProductionEntity> oilProduction;
+    //   @OneToMany(mappedBy = "reportId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+   // private Set<OilProductionEntity> oilProduction;
 
     /**
      * Раздел 2.
@@ -74,8 +75,8 @@ public class ReportEntity {
      * Раздел 3.
      * Ввод в действие скважин, единиц
      */
-    @OneToMany(mappedBy = "reportId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<CommissionedWellsEntity> commissionedWells;
+//    @OneToMany(mappedBy = "reportId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    private Set<CommissionedWellsEntity> commissionedWells;
 
     /**
      * Раздел 4.
@@ -96,28 +97,28 @@ public class ReportEntity {
      * Раздел 6.
      * Добыча нефтяного (попутного) газа, тысяч кубических метров
      */
-    @OneToOne(mappedBy = "reportId", cascade = CascadeType.ALL)
-    private GasProductionEntity gasProduction;
-
-    /**
-     * Раздел 7.
-     * Движение нфти (включая газовый конденсат) с начала года, тонн
-     */
-    @OneToOne(mappedBy = "reportId", cascade = CascadeType.ALL)
-    private OilMovementEntity oilMovement;
-
-    /**
-     * Раздел 8.
-     * Подготовка нефти (включая газовый конденсат), тонн
-     */
-    @OneToOne(mappedBy = "reportId", cascade = CascadeType.ALL)
-    private OilPreparationEntity oilPreparation;
-
-    /**
-     * Должностное лицо, ответственное за предоставление данных
-     */
-    @OneToOne(mappedBy = "reportId", cascade = CascadeType.ALL)
-    private ExecutiveEntity executive;
+//    @OneToOne(mappedBy = "reportId", cascade = CascadeType.ALL)
+//    private GasProductionEntity gasProduction;
+//
+//    /**
+//     * Раздел 7.
+//     * Движение нфти (включая газовый конденсат) с начала года, тонн
+//     */
+//    @OneToOne(mappedBy = "reportId", cascade = CascadeType.ALL)
+//    private OilMovementEntity oilMovement;
+//
+//    /**
+//     * Раздел 8.
+//     * Подготовка нефти (включая газовый конденсат), тонн
+//     */
+//    @OneToOne(mappedBy = "reportId", cascade = CascadeType.ALL)
+//    private OilPreparationEntity oilPreparation;
+//
+//    /**
+//     * Должностное лицо, ответственное за предоставление данных
+//     */
+//    @OneToOne(mappedBy = "reportId", cascade = CascadeType.ALL)
+//    private ExecutiveEntity executive;
 
     /**
      * Дата составления документа

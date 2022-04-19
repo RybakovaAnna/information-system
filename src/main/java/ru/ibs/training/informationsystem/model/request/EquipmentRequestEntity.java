@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -20,7 +21,7 @@ public class EquipmentRequestEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "application_for_equipment_id_seq")
     @SequenceGenerator(sequenceName = "application_for_equipment_id_seq", name = "application_for_equipment_id_seq")
     @Column(name = "id")
-    private Long id;
+    private UUID id;
 
     @NotBlank
     @Column(name = "status", nullable = false, length = 15)

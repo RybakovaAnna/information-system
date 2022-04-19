@@ -3,7 +3,6 @@ package ru.ibs.training.informationsystem.model.report;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -17,7 +16,6 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = "oilProduction")
 @Table(name = "report")
 public class ReportEntity {
 
@@ -62,7 +60,7 @@ public class ReportEntity {
      * Раздел 1.
      * Добыча нефти, тонн
      */
-    @OneToMany(mappedBy = "reportId")
+    @OneToMany(mappedBy = "reportId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<OilProductionEntity> oilProduction;
 
     /**

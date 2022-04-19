@@ -7,12 +7,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
-/**
- * Заявка на оборудование
- */
 @Entity
 @Data
 @AllArgsConstructor
@@ -26,44 +23,26 @@ public class EquipmentRequestEntity {
     @Column(name = "id")
     private UUID id;
 
-    /**
-     * Статус
-     */
     @NotBlank
     @Column(name = "status", nullable = false, length = 15)
     private String status;
 
-    /**
-     * Наименование оборудования
-     */
     @NotBlank
-    @Column(name = "title", nullable = false, length = 50)
-    private String title;
+    @Column(name = "type_of_equipment", nullable = false, length = 50)
+    private String TypeOfEquipment;
 
-    /**
-     * Тип оборудования
-     */
     @NotBlank
-    @Column(name = "type", nullable = false, length = 50)
-    private String type;
+    @Column(name = "name", nullable = false, length = 50)
+    private String name;
 
-    /**
-     * Требуемое количество
-     */
     @NotNull
-    @Column(name = "amount", nullable = false)
-    private Integer amount;
+    @Column(name = "number", nullable = false)
+    private Integer number;
 
-    /**
-     * Дата
-     */
     @Column(name = "date", nullable = false)
-    private Date date;
+    private LocalDate date;
 
-    /**
-     * Обоснование
-     */
     @NotBlank
     @Column(name = "justification", nullable = false)
-    private String comment;
+    private String justification;
 }

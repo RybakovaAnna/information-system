@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.training.informationsystem.controllers.api.v1.dtos.EquipmentRequestDto;
 import ru.ibs.training.informationsystem.controllers.api.v1.dtos.ReportDto;
+import ru.ibs.training.informationsystem.services.interfaces.ReportService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,13 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping("/api/v1/equipment-report")
 public class ReportController {
+
+    private ReportService service;
+
+    public ReportController(ReportService service) {
+        this.service = service;
+    }
+
     @ApiOperation("Получение всех отчетов")
     @ApiResponses(
             value = {
@@ -27,7 +35,7 @@ public class ReportController {
             produces = APPLICATION_JSON_VALUE
     )
     public List<ReportDto> allReports() {
-        return new ArrayList<>();
+        return service.getAllReports();
     }
 
     @ApiOperation("Получение отчета по id")
@@ -43,7 +51,7 @@ public class ReportController {
     )
     public ReportDto getOneReport(
             @PathVariable Long id) {
-        return new ReportDto();
+        return service.getReport(id);
     }
 
     @ApiOperation("Редактирование отчета")
@@ -58,8 +66,9 @@ public class ReportController {
             consumes = APPLICATION_JSON_VALUE
     )
     public void updateReport(
-            @PathVariable Long id) {
-
+            @PathVariable Long id,
+            @RequestBody ReportDto dto) {
+        service.updateReport(id, dto);
     }
 
     @ApiOperation("Создание нефтяного отчета")
@@ -76,5 +85,6 @@ public class ReportController {
             @RequestBody
             @ApiParam(value = "EquipmentRequest", required = true)
                     ReportDto reportDto) {
+        service.createReport(reportDto);
     }
 }

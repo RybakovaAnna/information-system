@@ -1,8 +1,6 @@
 package ru.ibs.training.informationsystem.model.report;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -14,7 +12,8 @@ import javax.validation.constraints.NotNull;
  * искусственного воздействия на пласт, тонн
  */
 @Entity
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "reservoir_oil_production")

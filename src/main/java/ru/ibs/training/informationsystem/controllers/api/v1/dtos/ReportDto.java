@@ -82,10 +82,6 @@ public class ReportDto {
     @NotNull
     private Double field8_1;
 
-    @JsonProperty("field9_1")
-    @NotNull
-    private Double field9_1;
-
     @JsonProperty("field10_1")
     @NotNull
     private Double field10_1;
@@ -137,9 +133,6 @@ public class ReportDto {
     @NotNull
     private Integer field8_2;
 
-    @JsonProperty("field9_2")
-    @NotNull
-    private Integer field9_2;
 
     @JsonProperty("field10_2")
     @NotNull
@@ -180,10 +173,6 @@ public class ReportDto {
     @NotNull
     private Integer field8_3;
 
-    @JsonProperty("field9_3")
-    @NotNull
-    private Integer field9_3;
-
     @JsonProperty("field10_3")
     @NotNull
     private Integer field10_3;
@@ -222,10 +211,6 @@ public class ReportDto {
     @JsonProperty("field8_4")
     @NotNull
     private Double field8_4;
-
-    @JsonProperty("field9_4")
-    @NotNull
-    private Double field9_4;
 
     @JsonProperty("field10_4")
     @NotNull
@@ -266,10 +251,6 @@ public class ReportDto {
     @NotNull
     private Integer field8_5;
 
-    @JsonProperty("field9_5")
-    @NotNull
-    private Integer field9_5;
-
     @JsonProperty("field10_5")
     @NotNull
     private Integer field10_5;
@@ -308,10 +289,6 @@ public class ReportDto {
     @JsonProperty("field8_6")
     @NotNull
     private Double field8_6;
-
-    @JsonProperty("field9_6")
-    @NotNull
-    private Double field9_6;
 
     @JsonProperty("field10_6")
     @NotNull

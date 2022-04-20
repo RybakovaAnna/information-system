@@ -1,8 +1,6 @@
 package ru.ibs.training.informationsystem.model.report;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -13,7 +11,8 @@ import javax.validation.constraints.NotNull;
  * Ввод в действие скважин, единиц
  */
 @Entity
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "commissioned_wells")
@@ -41,29 +40,25 @@ public class CommissionedWellsEntity {
     /**
      * Новые скважины в том числе из бурения и освоения после бурения
      */
-    @NotNull
-    @Column(name = "from_drilling", nullable = false)
+    @Column(name = "from_drilling")
     private Integer fromDrilling;
 
     /**
      * Новые скважины в том числе из консервации
      */
-    @NotNull
-    @Column(name = "from_conservation", nullable = false)
+    @Column(name = "from_conservation")
     private Integer fromConservation;
 
     /**
      * Новые скважины в том числе из других фондов скважин
      */
-    @NotNull
-    @Column(name = "from_other_funds", nullable = false)
+    @Column(name = "from_other_funds")
     private Integer fromOtherFunds;
 
     /**
      * Введенные из бездействия(с прошлых лет)
      */
-    @NotNull
-    @Column(name = "dormant", nullable = false)
+    @Column(name = "dormant")
     private Integer dormant;
 
     @ManyToOne

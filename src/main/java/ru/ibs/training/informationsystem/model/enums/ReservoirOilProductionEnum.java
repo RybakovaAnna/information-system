@@ -4,7 +4,7 @@ public enum ReservoirOilProductionEnum {
     TOTAL("Всего"),
     WATER_INJECTION("Закачки воды"),
     HYDRODYNAMIC("Закачки воды в том числе гидродинамические методы"),
-    HEW("Новые методы "),
+    NEW("Новые методы "),
     PHYSICAL_CHEMICAl("физико-химические "),
     THERMAL("термические");
 

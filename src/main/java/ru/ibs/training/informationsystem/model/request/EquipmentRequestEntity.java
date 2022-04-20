@@ -7,42 +7,63 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.UUID;
 
+/**
+ * Заявка на оборудование
+ */
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "application_for_equipment")
+@Table(name = "equipment_request")
 public class EquipmentRequestEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "application_for_equipment_id_seq")
-    @SequenceGenerator(sequenceName = "application_for_equipment_id_seq", name = "application_for_equipment_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "equipment_request_id_seq")
+    @SequenceGenerator(sequenceName = "equipment_request_id_seq", name = "equipment_request_id_seq")
     @Column(name = "id")
     private UUID id;
 
+    /**
+     * Статус
+     */
     @NotBlank
     @Column(name = "status", nullable = false, length = 15)
     private String status;
 
+    /**
+     * Наименование оборудования
+     */
     @NotBlank
-    @Column(name = "type_of_equipment", nullable = false, length = 50)
-    private String TypeOfEquipment;
+    @Column(name = "title", nullable = false, length = 50)
+    private String title;
 
+    /**
+     * Тип оборудования
+     */
     @NotBlank
-    @Column(name = "name", nullable = false, length = 50)
-    private String name;
+    @Column(name = "type", nullable = false, length = 50)
+    private String type;
 
+    /**
+     * Требуемое количество
+     */
     @NotNull
-    @Column(name = "number", nullable = false)
-    private Integer number;
+    @Column(name = "amount", nullable = false)
+    private Integer amount;
 
+    /**
+     * Дата
+     */
     @Column(name = "date", nullable = false)
-    private LocalDate date;
+    private Date date;
 
+    /**
+     * Обоснование
+     */
     @NotBlank
     @Column(name = "justification", nullable = false)
-    private String justification;
+    private String comment;
 }

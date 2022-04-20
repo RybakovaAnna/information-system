@@ -1,8 +1,9 @@
 package ru.ibs.training.informationsystem.model.report;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -13,9 +14,8 @@ import javax.validation.constraints.NotNull;
  * Добыча нефти, тонн
  */
 @Entity
-@Data
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "mining_method")
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "oil_production")
@@ -27,7 +27,7 @@ public class OilProductionEntity {
     private Long id;
 
     @NotBlank
-    @Column(name = "mining_method", nullable = false)
+    @Column(name = "mining_method", nullable = false, length = 60)
     private String miningMethod;
 
     /**
@@ -40,36 +40,31 @@ public class OilProductionEntity {
     /**
      * Число числившихся скважино-месяцев с начала года
      */
-    @NotNull
-    @Column(name = "registered_wells", nullable = false)
+    @Column(name = "registered_wells")
     private Integer registeredWells;
 
     /**
      * Число отработанных скважино-месяцев с начала года
      */
-    @NotNull
-    @Column(name = "worked_wells", nullable = false)
+    @Column(name = "worked_wells")
     private Integer workedWells;
 
     /**
      * Средний дебит на отработанный скважино-месяц, т (фактически)
      */
-    @NotNull
-    @Column(name = "average_flow", nullable = false)
+    @Column(name = "average_flow")
     private Double averageFlow;
 
     /**
      * Число скважин, дающих продукцию на конец отчетного периода
      */
-    @NotNull
-    @Column(name = "production_wells", nullable = false)
+    @Column(name = "production_wells")
     private Integer productionWells;
 
     /**
      * Извлечено из скважин жидкости с начала года, т
      */
-    @NotNull
-    @Column(name = "extracted_liquid", nullable = false)
+    @Column(name = "extracted_liquid")
     private Double extractedLiquid;
 
     @ManyToOne(fetch = FetchType.LAZY)

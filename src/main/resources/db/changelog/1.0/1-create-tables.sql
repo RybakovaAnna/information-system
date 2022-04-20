@@ -1,4 +1,4 @@
-create table application_for_equipment
+create table equipment_request
 (
     id                uuid         not null
         primary key,
@@ -10,8 +10,6 @@ create table application_for_equipment
     status            varchar(15)  not null
 );
 
-alter table application_for_equipment
-    owner to postgres;
 
 create table report
 (
@@ -25,17 +23,15 @@ create table report
     okpo_num        varchar(255)
 );
 
-alter table report
-    owner to postgres;
 
 create table commissioned_wells
 (
     id                bigint       not null
         primary key,
-    dormant           integer      not null,
-    from_conservation integer      not null,
-    from_drilling     integer      not null,
-    from_other_funds  integer      not null,
+    dormant           integer,
+    from_conservation integer,
+    from_drilling     integer,
+    from_other_funds  integer,
     in_all            integer      not null,
     name              varchar(255) not null,
     report_id         bigint
@@ -43,8 +39,6 @@ create table commissioned_wells
             references report
 );
 
-alter table commissioned_wells
-    owner to postgres;
 
 create table executive
 (
@@ -59,28 +53,24 @@ create table executive
             references report
 );
 
-alter table executive
-    owner to postgres;
 
 create table fund_calendar_time
 (
-    id                 bigint           not null
+    id                 bigint       not null
         primary key,
-    active_fund        double precision not null,
-    downtime           double precision not null,
-    name               varchar(255)     not null,
-    not_active         double precision not null,
-    operating_fund     double precision not null,
-    operating_time     double precision not null,
-    pending            double precision not null,
-    without_production double precision not null,
+    active_fund        integer      not null,
+    downtime           integer      not null,
+    name               varchar(255) not null,
+    not_active         integer,
+    operating_fund     integer      not null,
+    operating_time     integer      not null,
+    pending            integer      not null,
+    without_production integer      not null,
     report_id          bigint
         constraint fk96ml9d2j8snnoowx2xvcqnbly
             references report
 );
 
-alter table fund_calendar_time
-    owner to postgres;
 
 create table gas_production
 (
@@ -95,8 +85,6 @@ create table gas_production
             references report
 );
 
-alter table gas_production
-    owner to postgres;
 
 create table oil_movement
 (
@@ -124,8 +112,6 @@ create table oil_movement
             references report
 );
 
-alter table oil_movement
-    owner to postgres;
 
 create table oil_preparation
 (
@@ -140,27 +126,23 @@ create table oil_preparation
             references report
 );
 
-alter table oil_preparation
-    owner to postgres;
 
 create table oil_production
 (
-    mining_method    varchar(31)      not null,
     id               bigint           not null
         primary key,
-    average_flow     double precision not null,
-    extracted_liquid double precision not null,
+    average_flow     double precision,
+    extracted_liquid double precision,
+    mining_method    varchar(60)      not null,
     oil              double precision not null,
-    production_wells integer          not null,
-    registered_wells integer          not null,
-    worked_wells     integer          not null,
+    production_wells integer,
+    registered_wells integer,
+    worked_wells     integer,
     report_id        bigint
         constraint fk17lgmfhpg8mwg3vk7d9da73s3
             references report
 );
 
-alter table oil_production
-    owner to postgres;
 
 create table reservoir_oil_production
 (
@@ -174,8 +156,6 @@ create table reservoir_oil_production
             references report
 );
 
-alter table reservoir_oil_production
-    owner to postgres;
 
 create table well_fund
 (
@@ -207,7 +187,3 @@ create table well_fund
         constraint fkorhfp64kyn6hf057esltg01x3
             references report
 );
-
-alter table well_fund
-    owner to postgres;
-

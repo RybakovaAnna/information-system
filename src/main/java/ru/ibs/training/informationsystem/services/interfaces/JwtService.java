@@ -9,5 +9,5 @@ public interface JwtService {
     String validateAccessToken(String token);
 
     //  Service
-    boolean validateTokenAndPutSecurityContext(String token);
+//    boolean validateTokenAndPutSecurityContext(String token);
 }

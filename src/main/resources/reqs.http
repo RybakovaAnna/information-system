@@ -1,0 +1,11 @@
+POST http://localhost:5433/api/auth
+Accept: application/json
+Content-Type: application/x-www-form-urlencoded
+
+username=julia&password=head
+
+###
+
+GET http://localhost:5433/api/v1/equipment-report
+Accept: application/json
+Authorization: Bearer token

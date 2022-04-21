@@ -69,6 +69,7 @@ public class RequestServiceImpl implements RequestService {
                 Long.parseLong(id.toString())
         );
         requestEntity.setStatus(Status.APPROVED.toString());
+        requestRepository.save(requestEntity);
     }
 
     @Override
@@ -77,5 +78,6 @@ public class RequestServiceImpl implements RequestService {
                 Long.parseLong(id.toString())
         );
         requestEntity.setStatus(Status.REJECTED.toString());
+        requestRepository.save(requestEntity);
     }
 }

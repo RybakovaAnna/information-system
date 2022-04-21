@@ -1,7 +1,8 @@
 package ru.ibs.training.informationsystem.repositories.security;
 
+
 public interface AccessTokenRepository {
 
-    void newToken(String username, String newRefreshToken);
-    boolean checkAndDelete(String username, String refreshToken);
+    public void newToken(String userName, String accessToken);
+    boolean checkToken(String username, String accessToken);
 }

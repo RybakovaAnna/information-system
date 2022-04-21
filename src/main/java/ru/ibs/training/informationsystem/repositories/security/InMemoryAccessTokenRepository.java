@@ -7,22 +7,19 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
-@Profile("in-memory")
 public class InMemoryAccessTokenRepository implements AccessTokenRepository {
 
     private final Map<String, String> storage = new ConcurrentHashMap<>();
 
 
     @Override
-    public void newToken(String username, String newRefreshToken) {
-        storage.put(username, newRefreshToken);
+    public void newToken(String userName, String accessToken) {
+        storage.put(userName, accessToken);
     }
 
     @Override
-    public boolean checkAndDelete(String username, String refreshToken) {
-        final boolean contains = refreshToken.equals(storage.get(username));
-        if (contains)
-            storage.remove(username, refreshToken);
+    public boolean checkToken(String username, String accessToken) {
+        final boolean contains = accessToken.equals(storage.get(username));
         return contains;
     }
 }

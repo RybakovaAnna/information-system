@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.training.informationsystem.controllers.api.v1.dtos.ReportDto;
 import ru.ibs.training.informationsystem.services.interfaces.ReportService;
@@ -16,12 +17,14 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping("/api/v1/equipment-report")
 public class ReportController {
 
-    private ReportService service;
+    private final ReportService service;
 
     public ReportController(ReportService service) {
         this.service = service;
     }
 
+    @Secured({"ROLE_USER", "ROLE_ROOT" +
+            ""})
     @ApiOperation("Получение всех отчетов")
     @ApiResponses(
             value = {
@@ -36,6 +39,7 @@ public class ReportController {
         return service.getAllReports();
     }
 
+    @Secured({"ROLE_USER", "ROLE_ROOT"})
     @ApiOperation("Получение отчета по id")
     @ApiResponses(
             value = {
@@ -52,23 +56,25 @@ public class ReportController {
         return service.getReport(id);
     }
 
-    @ApiOperation("Редактирование отчета")
-    @ApiResponses(
-            value = {
-                    @ApiResponse(code = 200, message = "Запрос принят"),
-                    @ApiResponse(code = 400, message = "Невалидный запрос"),
-                    @ApiResponse(code = 500, message = "Внутренняя ошибка сервера")
-            })
-    @PutMapping(
-            value = "/{id}",
-            consumes = APPLICATION_JSON_VALUE
-    )
-    public void updateReport(
-            @PathVariable Long id,
-            @RequestBody ReportDto dto) {
-        service.updateReport(id, dto);
-    }
+//    @Secured({"ROLE_USER"})
+//    @ApiOperation("Редактирование отчета")
+//    @ApiResponses(
+//            value = {
+//                    @ApiResponse(code = 200, message = "Запрос принят"),
+//                    @ApiResponse(code = 400, message = "Невалидный запрос"),
+//                    @ApiResponse(code = 500, message = "Внутренняя ошибка сервера")
+//            })
+//    @PutMapping(
+//            value = "/{id}",
+//            consumes = APPLICATION_JSON_VALUE
+//    )
+//    public void updateReport(
+//            @PathVariable Long id,
+//            @RequestBody ReportDto dto) {
+//        service.updateReport(id, dto);
+//    }
 
+    @Secured({"ROLE_BRANCH"})
     @ApiOperation("Создание нефтяного отчета")
     @ApiResponses(
             value = {

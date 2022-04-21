@@ -26,6 +26,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.jwtProvider = jwtProvider;
     }
 
+    //TODO: Более точно настроить маппинг ролей
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http

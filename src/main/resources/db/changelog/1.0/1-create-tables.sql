@@ -1,20 +1,24 @@
 create table equipment_request
 (
-    id                uuid         not null
-        primary key,
-    type_of_equipment varchar(50)  not null,
-    date              date         not null,
-    justification     varchar(255) not null,
-    name              varchar(50)  not null,
-    number            integer      not null,
-    status            varchar(15)  not null
+    id            uuid         not null
+        constraint equipment_request_pkey
+            primary key,
+    amount        integer      not null,
+    justification varchar(255) not null,
+    date          timestamp    not null,
+    status        varchar(15)  not null,
+    title         varchar(50)  not null,
+    type          varchar(50)  not null
 );
 
+alter table equipment_request
+    owner to postgres;
 
 create table report
 (
     id              bigint       not null
-        primary key,
+        constraint report_pkey
+            primary key,
     date            date,
     form_date       date,
     form_number     bigint,
@@ -23,11 +27,14 @@ create table report
     okpo_num        varchar(255)
 );
 
+alter table report
+    owner to postgres;
 
 create table commissioned_wells
 (
     id                bigint       not null
-        primary key,
+        constraint commissioned_wells_pkey
+            primary key,
     dormant           integer,
     from_conservation integer,
     from_drilling     integer,
@@ -39,11 +46,14 @@ create table commissioned_wells
             references report
 );
 
+alter table commissioned_wells
+    owner to postgres;
 
 create table executive
 (
     id        bigint      not null
-        primary key,
+        constraint executive_pkey
+            primary key,
     email     varchar(50) not null,
     full_name varchar(50) not null,
     position  varchar(50) not null,
@@ -53,11 +63,14 @@ create table executive
             references report
 );
 
+alter table executive
+    owner to postgres;
 
 create table fund_calendar_time
 (
     id                 bigint       not null
-        primary key,
+        constraint fund_calendar_time_pkey
+            primary key,
     active_fund        integer      not null,
     downtime           integer      not null,
     name               varchar(255) not null,
@@ -71,11 +84,14 @@ create table fund_calendar_time
             references report
 );
 
+alter table fund_calendar_time
+    owner to postgres;
 
 create table gas_production
 (
     id          bigint           not null
-        primary key,
+        constraint gas_production_pkey
+            primary key,
     burnt       double precision not null,
     consumption double precision not null,
     losses      double precision not null,
@@ -85,11 +101,14 @@ create table gas_production
             references report
 );
 
+alter table gas_production
+    owner to postgres;
 
 create table oil_movement
 (
     id                           bigint not null
-        primary key,
+        constraint oil_movement_pkey
+            primary key,
     balance_at_the_beginning     double precision,
     balance_at_the_end           double precision,
     drilling                     double precision,
@@ -112,11 +131,14 @@ create table oil_movement
             references report
 );
 
+alter table oil_movement
+    owner to postgres;
 
 create table oil_preparation
 (
     id              bigint not null
-        primary key,
+        constraint oil_preparation_pkey
+            primary key,
     oil_losses      double precision,
     prepared_oil    double precision,
     received_liquid double precision,
@@ -126,11 +148,14 @@ create table oil_preparation
             references report
 );
 
+alter table oil_preparation
+    owner to postgres;
 
 create table oil_production
 (
     id               bigint           not null
-        primary key,
+        constraint oil_production_pkey
+            primary key,
     average_flow     double precision,
     extracted_liquid double precision,
     mining_method    varchar(60)      not null,
@@ -143,11 +168,14 @@ create table oil_production
             references report
 );
 
+alter table oil_production
+    owner to postgres;
 
 create table reservoir_oil_production
 (
     id                  bigint           not null
-        primary key,
+        constraint reservoir_oil_production_pkey
+            primary key,
     method_of_influence varchar(255)     not null,
     oil_production      double precision not null,
     production_increase double precision not null,
@@ -156,11 +184,14 @@ create table reservoir_oil_production
             references report
 );
 
+alter table reservoir_oil_production
+    owner to postgres;
 
 create table well_fund
 (
     id                    bigint not null
-        primary key,
+        constraint well_fund_pkey
+            primary key,
     arrived_in_fund       integer,
     control               integer,
     development_work      integer,
@@ -187,3 +218,7 @@ create table well_fund
         constraint fkorhfp64kyn6hf057esltg01x3
             references report
 );
+
+alter table well_fund
+    owner to postgres;
+

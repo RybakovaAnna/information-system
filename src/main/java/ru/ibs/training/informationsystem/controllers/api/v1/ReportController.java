@@ -5,11 +5,13 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.training.informationsystem.controllers.api.v1.dtos.EquipmentRequestDto;
 import ru.ibs.training.informationsystem.controllers.api.v1.dtos.ReportDto;
 import ru.ibs.training.informationsystem.services.interfaces.ReportService;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +27,7 @@ public class ReportController {
         this.service = service;
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ROOT')")
     @ApiOperation("Получение всех отчетов")
     @ApiResponses(
             value = {
@@ -35,10 +38,12 @@ public class ReportController {
     @GetMapping(
             produces = APPLICATION_JSON_VALUE
     )
-    public List<ReportDto> allReports() {
+    public List<ReportDto> allReports(Principal principal) {
+        System.out.println(principal);
         return service.getAllReports();
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ROOT')")
     @ApiOperation("Получение отчета по id")
     @ApiResponses(
             value = {
@@ -72,6 +77,7 @@ public class ReportController {
 //        service.updateReport(id, dto);
 //    }
 
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
     @ApiOperation("Создание нефтяного отчета")
     @ApiResponses(
             value = {

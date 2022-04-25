@@ -26,6 +26,7 @@ public class AuthController {
         this.jwtService = jwtService;
     }
 
+
     @ApiOperation("Авторизация пользователя")
     @ApiResponses(
             value = {

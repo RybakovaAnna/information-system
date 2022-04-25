@@ -26,7 +26,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.jwtProvider = jwtProvider;
     }
 
-    //TODO: Более точно настроить маппинг ролей
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -37,10 +36,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/api/v1/user/**").permitAll()
-                .antMatchers("/api/v1/**").hasAnyRole("ROLE_ROOT","ROLE_USER")
-                .antMatchers("/api/v1/**").hasAnyAuthority("ROLE_ROOT","ROLE_USER")
-                .antMatchers(HttpMethod.DELETE).hasAnyAuthority("ROLE_ROOT")
-                .antMatchers(HttpMethod.DELETE).hasAnyRole("ROLE_ROOT")
 
                 .and()
                 .addFilter(new AuthenticationFilter(authenticationManager(), jwtProvider))

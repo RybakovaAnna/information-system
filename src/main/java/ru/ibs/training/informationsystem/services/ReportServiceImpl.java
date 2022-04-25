@@ -3,6 +3,7 @@ package ru.ibs.training.informationsystem.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.ibs.training.informationsystem.controllers.api.v1.dtos.ReportDto;
+import ru.ibs.training.informationsystem.mapper.ReportMapper;
 import ru.ibs.training.informationsystem.model.report.ReportEntity;
 import ru.ibs.training.informationsystem.repositories.report.ReportRepository;
 import ru.ibs.training.informationsystem.services.interfaces.Mapper;
@@ -15,10 +16,10 @@ import java.util.stream.Collectors;
 public class ReportServiceImpl implements ReportService {
 
     private ReportRepository repository;
-    private Mapper mapper;
+    private ReportMapper mapper;
 
     @Autowired
-    public ReportServiceImpl(ReportRepository repository, Mapper mapper) {
+    public ReportServiceImpl(ReportRepository repository, ReportMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }

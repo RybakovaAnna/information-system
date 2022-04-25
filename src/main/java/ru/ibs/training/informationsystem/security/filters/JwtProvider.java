@@ -64,9 +64,9 @@ public class JwtProvider {
 
     public String resolveToken(HttpServletRequest request) {
         String header = request.getHeader(HttpHeaders.AUTHORIZATION);
-        if (header.isEmpty() || !header.startsWith(BEARER_PREFIX)) {
-            return null;
+        if (!header.isEmpty() || header.startsWith(BEARER_PREFIX)) {
+            return header.replace(BEARER_PREFIX, "");
         }
-        return header.replace(BEARER_PREFIX, "");
+        return null;
     }
 }

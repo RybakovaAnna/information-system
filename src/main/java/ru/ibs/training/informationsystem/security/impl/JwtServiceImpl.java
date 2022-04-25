@@ -12,7 +12,6 @@ import ru.ibs.training.informationsystem.security.User;
 import ru.ibs.training.informationsystem.security.filters.JwtProvider;
 import ru.ibs.training.informationsystem.security.service.AuthService;
 import ru.ibs.training.informationsystem.security.service.JwtService;
-import ru.ibs.training.informationsystem.security.service.UserRepository;
 
 @Service
 public class JwtServiceImpl implements JwtService {

@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.training.informationsystem.controllers.api.v1.dtos.EquipmentRequestDto;
 import ru.ibs.training.informationsystem.services.interfaces.RequestService;
@@ -25,6 +26,7 @@ public class RequestController {
         this.service = service;
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ROOT', 'ROLE_USER')")
     @ApiOperation("Получение всех заявок на оборудование")
     @ApiResponses(
             value = {
@@ -39,6 +41,7 @@ public class RequestController {
         return service.findAll();
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ROOT', 'ROLE_USER')")
     @ApiOperation("Получение заявки по id")
     @ApiResponses(
             value = {
@@ -55,6 +58,7 @@ public class RequestController {
         return service.findById(id);
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ROOT')")
     @ApiOperation("Редактирование заявки")
     @ApiResponses(
             value = {
@@ -72,6 +76,7 @@ public class RequestController {
         service.updateById(id, dto);
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ROOT')")
     @ApiOperation("Удаление заявки")
     @ApiResponses(
             value = {
@@ -87,6 +92,7 @@ public class RequestController {
         service.deleteById(id);
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
     @ApiOperation("Заявка на получение оборудования")
     @ApiResponses(
             value = {
@@ -104,6 +110,7 @@ public class RequestController {
         service.createNewRequest(equipmentRequestDto);
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ROOT')")
     @ApiOperation("Удовлетворение заявки")
     @ApiResponses(
             value = {
@@ -120,6 +127,7 @@ public class RequestController {
         service.approveRequest(id);
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ROOT')")
     @ApiOperation("Отказ по заявке")
     @ApiResponses(
             value = {

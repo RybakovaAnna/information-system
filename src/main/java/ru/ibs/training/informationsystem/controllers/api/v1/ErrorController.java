@@ -20,6 +20,7 @@ public class ErrorController {
             Exception.class,
     })
     public ErrorDto dataBaseException(Exception err) {
-        return new ErrorDto(1, "Возникла ошибка во время обработки запроса");
+        err.printStackTrace();
+        return new ErrorDto(1, err.getMessage());
     }
 }

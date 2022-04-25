@@ -16,6 +16,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ReportDto {
 
+    @JsonProperty("id")
     private Long id;
 
     /**

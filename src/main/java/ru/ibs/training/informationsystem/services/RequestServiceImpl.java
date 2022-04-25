@@ -1,5 +1,6 @@
 package ru.ibs.training.informationsystem.services;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.ibs.training.informationsystem.controllers.api.v1.dtos.EquipmentRequestDto;
@@ -61,8 +62,9 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    public void createNewRequest(EquipmentRequestDto requestDto) {
-        EquipmentRequestEntity requestEntity = mapper.toEntity(requestDto);
+    public void createNewRequest(EquipmentRequestEntity request) {
+        EquipmentRequestEntity requestEntity = request;
+        request.setStatus(String.valueOf(Status.NEW));
         requestRepository.save(requestEntity);
     }
 

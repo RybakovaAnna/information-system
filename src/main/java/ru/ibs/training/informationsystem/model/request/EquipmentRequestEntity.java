@@ -21,8 +21,8 @@ import java.util.UUID;
 public class EquipmentRequestEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "equipment_request_id_seq")
-    @SequenceGenerator(sequenceName = "equipment_request_id_seq", name = "equipment_request_id_seq")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @SequenceGenerator(sequenceName = "equipment_request_id_seq", name = "equipment_request_id_seq")
     @Column(name = "id")
     private UUID id;
 
@@ -50,7 +50,7 @@ public class EquipmentRequestEntity {
     /**
      * Требуемое количество
      */
-    @NotNull
+    @NotBlank
     @Column(name = "amount", nullable = false)
     private Integer amount;
 

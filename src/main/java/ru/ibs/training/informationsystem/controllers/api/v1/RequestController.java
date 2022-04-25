@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.training.informationsystem.controllers.api.v1.dtos.EquipmentRequestDto;
 import ru.ibs.training.informationsystem.controllers.api.v1.dtos.RejectEquipmentRequestDto;
+import ru.ibs.training.informationsystem.model.request.EquipmentRequestEntity;
 import ru.ibs.training.informationsystem.services.interfaces.RequestService;
 
 import java.util.List;
@@ -107,8 +108,8 @@ public class RequestController {
     public void newRequest(
             @RequestBody
             @ApiParam(value = "EquipmentRequest", required = true)
-                    EquipmentRequestDto equipmentRequestDto) {
-        service.createNewRequest(equipmentRequestDto);
+                    EquipmentRequestEntity equipmentRequestEntity) {
+        service.createNewRequest(equipmentRequestEntity);
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ROOT')")

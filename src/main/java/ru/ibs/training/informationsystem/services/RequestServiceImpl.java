@@ -3,12 +3,15 @@ package ru.ibs.training.informationsystem.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.ibs.training.informationsystem.controllers.api.v1.dtos.EquipmentRequestDto;
+import ru.ibs.training.informationsystem.controllers.api.v1.dtos.RejectEquipmentRequestDto;
 import ru.ibs.training.informationsystem.model.enums.Status;
 import ru.ibs.training.informationsystem.model.request.EquipmentRequestEntity;
 import ru.ibs.training.informationsystem.repositories.request.EquipmentRequestRepository;
 import ru.ibs.training.informationsystem.services.interfaces.Mapper;
 import ru.ibs.training.informationsystem.services.interfaces.RequestService;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -69,13 +72,16 @@ public class RequestServiceImpl implements RequestService {
                 Long.parseLong(id.toString())
         );
         requestEntity.setStatus(Status.APPROVED.toString());
+        requestRepository.save(requestEntity);
     }
 
     @Override
-    public void rejectRequest(UUID id) {
+    public void rejectRequest(RejectEquipmentRequestDto dto) {
         EquipmentRequestEntity requestEntity = requestRepository.getById(
-                Long.parseLong(id.toString())
+                Long.parseLong(dto.getId().toString())
         );
         requestEntity.setStatus(Status.REJECTED.toString());
+        requestEntity.setComment(dto.getReason());
+        requestRepository.save(requestEntity);
     }
 }

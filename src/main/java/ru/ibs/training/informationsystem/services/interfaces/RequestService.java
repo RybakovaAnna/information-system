@@ -2,6 +2,7 @@ package ru.ibs.training.informationsystem.services.interfaces;
 
 import org.springframework.stereotype.Component;
 import ru.ibs.training.informationsystem.controllers.api.v1.dtos.EquipmentRequestDto;
+import ru.ibs.training.informationsystem.controllers.api.v1.dtos.RejectEquipmentRequestDto;
 
 import java.util.List;
 import java.util.UUID;
@@ -20,5 +21,5 @@ public interface RequestService {
 
     void approveRequest(UUID id);
 
-    void rejectRequest(UUID id);
+    void rejectRequest(RejectEquipmentRequestDto dto);
 }

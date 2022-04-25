@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.training.informationsystem.controllers.api.v1.dtos.EquipmentRequestDto;
+import ru.ibs.training.informationsystem.controllers.api.v1.dtos.RejectEquipmentRequestDto;
 import ru.ibs.training.informationsystem.services.interfaces.RequestService;
 
 import java.util.List;
@@ -137,8 +138,8 @@ public class RequestController {
             })
     @PostMapping("/{id}/reject")
     public void reject(
-            @PathVariable UUID id) {
-        service.rejectRequest(id);
+            @RequestBody RejectEquipmentRequestDto dto) {
+        service.rejectRequest(dto);
     }
 
 }

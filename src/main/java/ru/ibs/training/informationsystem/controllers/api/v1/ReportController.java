@@ -1,18 +1,20 @@
 package ru.ibs.training.informationsystem.controllers.api.v1;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.springframework.security.access.annotation.Secured;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import ru.ibs.training.informationsystem.controllers.api.v1.dtos.EquipmentRequestDto;
 import ru.ibs.training.informationsystem.controllers.api.v1.dtos.ReportDto;
+import ru.ibs.training.informationsystem.services.interfaces.ConverterService;
 import ru.ibs.training.informationsystem.services.interfaces.ReportService;
 
+import java.io.FileNotFoundException;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -22,9 +24,12 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class ReportController {
 
     private ReportService service;
+    private ConverterService converterService;
 
-    public ReportController(ReportService service) {
+    @Autowired
+    public ReportController(ReportService service, ConverterService converterService) {
         this.service = service;
+        this.converterService = converterService;
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ROOT')")
@@ -93,5 +98,18 @@ public class ReportController {
             @ApiParam(value = "EquipmentRequest", required = true)
                     ReportDto reportDto) {
         service.createReport(reportDto);
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
+    @ApiOperation("Создание нефтяного отчета")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(code = 200, message = "Запрос принят"),
+                    @ApiResponse(code = 400, message = "Невалидный запрос"),
+                    @ApiResponse(code = 500, message = "Внутренняя ошибка сервера")
+            })
+    @GetMapping("/pdf")
+    public Document createPDF(@PathVariable Long id) throws FileNotFoundException, DocumentException {
+        return converterService.convertToPDF(id);
     }
 }
